@@ -1,0 +1,53 @@
+<div>
+  <mat-toolbar color="primary">
+    <button type="button" arial-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+      <mat-icon style="color: white" aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+
+    <span style="color: white">Arosaje</span>
+
+    <span class="fill-remaining-space"></span>
+    <button mat-button>
+      <span style="color: white; font-size: 21px; "></span>
+    </button>
+
+    <!--This fills the remaining space of the current row-->
+    <button mat-button (click)="logout()">
+      <mat-icon style="color: white; margin-right: 5px">exit_to_app</mat-icon>
+      <span style="color: white; font-size: 21px; ">Déconnexion</span>
+    </button>
+
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport fixedTopGap="64"
+                 [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+                 [opened]="(isHandset$ | async) === false">
+      <mat-nav-list>
+        <h2 matSubheader>Utilisateurs</h2>
+        <a mat-list-item routerLink="/users/list" routerLinkActive="list-item-active">
+          <mat-icon matListIcon>dashboard</mat-icon>
+          Dashboard
+        </a>
+        <a mat-list-item routerLink="/users/list" routerLinkActive="list-item-active">
+          <mat-icon matListIcon>list</mat-icon>
+          Ldap
+        </a>
+
+        <mat-divider></mat-divider>
+
+        <h2 matSubheader>Importation</h2>
+        <a mat-list-item routerLink="/users/list" routerLinkActive="list-item-active">
+          <mat-icon matListIcon>save_alt</mat-icon>
+          Importation
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <!-- Content Here -->
+      <div class="main_content">
+        <ng-content></ng-content>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
